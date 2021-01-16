@@ -153,6 +153,17 @@ async function turnVintnersIntoPages({ graphql, actions }) {
       },
     });
   }
+
+  data.allSanityVintner.nodes.forEach((vintner) => {
+    console.log(`creating page ${vintner.name}`);
+    actions.createPage({
+      path: `/vintner/${vintner.slug.current}`,
+      component: path.resolve('./src/pages/vintner.js'),
+      context: {
+        id: vintner.id,
+      },
+    });
+  });
 }
 
 export async function createPages(params) {

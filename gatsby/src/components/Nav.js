@@ -66,7 +66,7 @@ export default function Nav() {
           <Link to="/vintners">Vintners</Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/order">Order</Link>
         </li>
       </ul>
     </NavStyles>

@@ -2,6 +2,7 @@ import { Link } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import SEO from './SEO';
 
 const WineStyles = styled.div`
   display: grid;

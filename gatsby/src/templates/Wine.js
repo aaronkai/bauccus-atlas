@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 export const query = graphql`
   query($slug: String!) {
@@ -40,18 +41,21 @@ const SingleWineStyles = styled.div`
 
 export default function SingleWinePage({ data: { wine } }) {
   return (
-    <SingleWineStyles>
-      <Img fluid={wine.image.asset.fluid} alt={wine.name} />
-      <div>
-        <h2 className="mark"> {wine.name}</h2>
-        <ul>
-          <li> {wine.color} </li>
-          <li>
-            {wine.region}, {wine.vintner.country}
-          </li>
-          <li>Vintner: {wine.vintner.name}</li>
-        </ul>
-      </div>
-    </SingleWineStyles>
+    <>
+      <SEO title={wine.name} image={wine?.image?.asset?.fluid?.src} />
+      <SingleWineStyles>
+        <Img fluid={wine.image.asset.fluid} alt={wine.name} />
+        <div>
+          <h2 className="mark"> {wine.name}</h2>
+          <ul>
+            <li> {wine.color} </li>
+            <li>
+              {wine.region}, {wine.vintner.country}
+            </li>
+            <li>Vintner: {wine.vintner.name}</li>
+          </ul>
+        </div>
+      </SingleWineStyles>
+    </>
   );
 }

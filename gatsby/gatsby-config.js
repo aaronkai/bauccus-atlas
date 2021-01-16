@@ -7,9 +7,13 @@ module.exports = {
     title: `Baccus' Atlas`,
     description: `A place to keep track of your wine.`,
   },
+  // flags: {
+  //   FAST_REFRESH: true,
+  // },
   plugins: [
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

@@ -2,6 +2,8 @@ import { graphql, Link } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import Pagination from '../components/Pagination';
+import SEO from '../components/SEO';
 
 export const query = graphql`
   query($skip: Int = 0, $pageSize: Int = 2) {
@@ -61,19 +63,28 @@ const VintnerStyles = styled.div`
 
 export default function VintnersPage({
   data: {
-    vintners: { nodes: vintners },
+    vintners: { totalCount, nodes: vintners },
   },
+  pageContext,
 }) {
-  console.log(vintners);
   return (
     <>
+      <SEO title={`Vintners - Page ${pageContext.currentPage || 1}`} />
+      <Pagination
+        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+        totalCount={totalCount}
+        currentPage={pageContext.currentPage || 1}
+        skip={pageContext.skip}
+        base="/vintners"
+      />
       <VintnerGrid>
         {vintners.map((vintner) => (
           <VintnerStyles>
-            <Link key={vintner.id} to={`/vintner/${vintner.slug.current}`} />
-            <h2>
-              <span className="mark">{vintner.name}</span>
-            </h2>
+            <Link key={vintner.id} to={`/vintner/${vintner.slug.current}`}>
+              <h2>
+                <span className="mark">{vintner.name}</span>
+              </h2>
+            </Link>
             <Img fluid={vintner.image.asset.fluid} />
             <p className="description">{vintner.description}</p>
           </VintnerStyles>

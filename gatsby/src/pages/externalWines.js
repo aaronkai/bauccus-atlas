@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 export const query = graphql`
   query externalWineQuery {
@@ -22,28 +23,30 @@ export const query = graphql`
 `;
 
 const WineStyles = styled.div`
-    border: 1px solid var(--grey);
-    padding: 2rem;
-    text-align: center;
-    img{
-        width: 100%;
-        height: 200px;
-        object-fit: contain;
-    }
+  border: 1px solid var(--grey);
+  padding: 2rem;
+  text-align: center;
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
   }
 `;
 
 function SingleWine({ wine }) {
   return (
-    <WineStyles>
-      <img src={wine.image} alt={wine.wine} />
-      <h3>
-        <span className="mark">{wine.wine}</span>
-      </h3>
-      <p>
-        Winery: {wine.winery}, {wine.location}
-      </p>
-    </WineStyles>
+    <>
+      <SEO title="External Partners" />
+      <WineStyles>
+        <img src={wine.image} alt={wine.wine} />
+        <h3>
+          <span className="mark">{wine.wine}</span>
+        </h3>
+        <p>
+          Winery: {wine.winery}, {wine.location}
+        </p>
+      </WineStyles>
+    </>
   );
 }
 

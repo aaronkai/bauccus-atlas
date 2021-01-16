@@ -1,9 +1,11 @@
 import React from 'react';
+import SEO from '../components/SEO';
 
-export default function HomePage() {
+export default function NewWinesPage() {
   return (
     <>
-      <p> I'm the home page</p>
+      <SEO title="About" />
+      <p>Eventually we'll show the inventory on a map</p>
     </>
   );
 }
