@@ -142,7 +142,6 @@ async function turnVintnersIntoPages({ graphql, actions }) {
   const pageCount = Math.ceil(data.allSanityVintner.totalCount / pageSize);
   // loop from 1 to n and create pages for them
   for (let i = 0; i < pageCount; i++) {
-    console.log(`creating page ${i}`);
     actions.createPage({
       path: `/vintners/${i + 1}`,
       component: path.resolve('./src/pages/vintners.js'),
@@ -155,7 +154,6 @@ async function turnVintnersIntoPages({ graphql, actions }) {
   }
 
   data.allSanityVintner.nodes.forEach((vintner) => {
-    console.log(`creating page ${vintner.name}`);
     actions.createPage({
       path: `/vintner/${vintner.slug.current}`,
       component: path.resolve('./src/pages/vintner.js'),

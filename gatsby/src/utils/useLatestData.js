@@ -56,7 +56,6 @@ export function useLatestData() {
         // set the data to state
         setCurrentWines(res.data.StoreSettings.inStock);
         setCurrentVintners(res.data.StoreSettings.showcaseVintner);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

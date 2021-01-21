@@ -28,7 +28,6 @@ export default function useWineOrder({ wines, values }) {
   // This is the function that is run when someone submits the form
   async function submitOrder(e) {
     e.preventDefault();
-    console.log(e);
     setloading(true);
     setError(null);
     setMessage(null);
