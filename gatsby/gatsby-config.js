@@ -36,7 +36,7 @@ module.exports = {
       options: {
         projectId: '13dsh1bo',
         dataset: 'production',
-        watchMode: true,
+        watchMode: false,
         token: process.env.SANITY_TOKEN,
       },
     },
