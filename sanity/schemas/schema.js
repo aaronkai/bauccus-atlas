@@ -8,6 +8,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import wine from './wine';
 import user from './user';
 import vintner from './vintner';
+import storeSettings from './storeSettings';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -19,5 +20,6 @@ export default createSchema({
     wine,
     user,
     vintner,
+    storeSettings,
   ]),
 })
