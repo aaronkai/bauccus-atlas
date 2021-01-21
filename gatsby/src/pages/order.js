@@ -38,23 +38,36 @@ export default function OrderPage({ data }) {
   const { values, updateValue } = useForm({
     name: '',
     email: '',
+    mapleSyrup: '',
   });
-  const { order, addToOrder, removeFromOrder } = useWine({
+  const {
+    order,
+    error,
+    loading,
+    message,
+    addToOrder,
+    removeFromOrder,
+    submitOrder,
+  } = useWine({
     wines,
-    inputs: values,
+    values,
   });
 
+  if (message) {
+    return <p>{message}</p>;
+  }
   return (
     <>
       <SEO title="Don't Go Thirsty!" />
-      <OrderStyles>
-        <fieldset>
+      <OrderStyles onSubmit={submitOrder}>
+        <fieldset disabled={loading}>
           <legend>Your Info</legend>
           <label htmlFor="Name">
             Name
             <input
               type="text"
               name="name"
+              id="name"
               value={values.name}
               onChange={updateValue}
             />
@@ -65,12 +78,22 @@ export default function OrderPage({ data }) {
               type="text"
               src=""
               name="email"
+              id="email"
               value={values.email}
               onChange={updateValue}
             />
+            <input
+              type="text"
+              src=""
+              id="mapleSyrup"
+              name="mapleSyrup"
+              value={values.mapleSyrup}
+              onChange={updateValue}
+              className="mapleSyrup"
+            />
           </label>
         </fieldset>
-        <fieldset className="wineList">
+        <fieldset className="wineList" disabled={loading}>
           <legend>Wine List</legend>
           {wines.map((wine) => (
             <WineListItemStyles key={wine.id}>
@@ -98,7 +121,7 @@ export default function OrderPage({ data }) {
             </WineListItemStyles>
           ))}
         </fieldset>
-        <fieldset className="order">
+        <fieldset className="order" disabled={loading}>
           <legend>Order</legend>
           <WineOrder
             order={order}
@@ -106,9 +129,12 @@ export default function OrderPage({ data }) {
             wines={wines}
           />
         </fieldset>
-        <fieldset>
+        <fieldset disabled={loading}>
           <h3>Total is {formatMoney(calculateOrderTotal(order, wines))}</h3>
-          <button type="submit">Order Ahead</button>
+          <div>{error ? <p>Error: {error}</p> : ''}</div>
+          <button type="submit" disabled={loading}>
+            {loading ? 'placing Order...' : 'Order Ahead'}
+          </button>
         </fieldset>
       </OrderStyles>
     </>

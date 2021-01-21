@@ -11,10 +11,20 @@ const OrderStyles = styled.form`
     display: grid;
     gap: 3rem;
     align-content: start;
+    label {
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
     &.order,
     &.wineList {
       grid-column: span 1;
+      /* Chrome is weird about Grid and fieldsets, so we add a fixed height to fix it :)  */
+      height: 600px;
     }
+  }
+  .mapleSyrup {
+    display: none;
   }
   @media (max-width: 900px) {
     fieldset.wineList,

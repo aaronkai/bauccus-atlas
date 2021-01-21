@@ -75,11 +75,11 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
   }
 
-  .tilt {
+  /* .tilt {
     transform: rotate(-2deg);
     position: relative;
     display: inline-block;
-  }
+  } */
 
 `;
 
