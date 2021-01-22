@@ -32,7 +32,8 @@ export const query = graphql`
 const VintnerGrid = styled.div`
   display: grid;
   grid-gap: 2rem;
-  grid-template-columns: repeat(2, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 450px));
+  justify-content: center;
 `;
 
 const VintnerStyles = styled.div`
@@ -79,7 +80,7 @@ export default function VintnersPage({
       />
       <VintnerGrid>
         {vintners.map((vintner) => (
-          <VintnerStyles>
+          <VintnerStyles key={vintner.id}>
             <Link key={vintner.id} to={`/vintner/${vintner.slug.current}`}>
               <h2>
                 <span className="mark">{vintner.name}</span>
